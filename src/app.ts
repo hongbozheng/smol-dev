@@ -1,18 +1,18 @@
 import express from 'express';
-import { config } from './config/index';
-import { middleware } from './middleware/index';
-import { routes } from './routes';
+import config from './config/index';
+import { middleware1 } from './middleware/index';
+import routes from './routes';
 
 const app = express();
 
-// Load middleware
-middleware.forEach((m) => app.use(m));
+app.use(config);
 
-// Load routes
-app.use('/', routes);
+const middleware = [middleware1];
 
-app.listen(config.port, () => {
-  console.log(`Server is running on port ${config.port}`);
+middleware.forEach((m: express.RequestHandler) => app.use(m));
+
+app.use(routes);
+
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });
-
-export default app;

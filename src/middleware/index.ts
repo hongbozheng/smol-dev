@@ -5,9 +5,4 @@ export const middleware1 = (req: express.Request, res: express.Response, next: e
     next();
 };
 
-export const middleware2 = (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    // Middleware logic here
-    next();
-};
-
-// Add more middleware as needed
+export const middleware = [middleware1];
